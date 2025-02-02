@@ -43,6 +43,7 @@ Examples are:
 * Padletur: https://www.dnt.no/aktivitetskalender?subtypes=346
 * Bergen byfjellene vest and sentral: https://www.dnt.no/aktivitetskalender?areas=12220,12221
 * By municipality, only events in Øygarden between 2025-02-11 and 2025-02-21: https://www.dnt.no/aktivitetskalender?municipalities=4626&startdate=11.02.2025&enddate=21.02.2025
+* Hikes of Til Topps Bergen group, using search string: https://www.dnt.no/aktivitetskalender?organizergroups=471&q=til+topps+bergen
 
 #### FilterIds
 * `types`: `320` (Fellestur), `321` (Arrangement), `322` (Kurs), `323` (Dugnad), `324` (Annet)
@@ -55,3 +56,4 @@ Examples are:
 * `areas`: see file [AreaFacets.md](AreaFacets.md)
 * `municipalities`: see file [MunicipalityFacets.md](MunicipalityFacets.md)
 * `startdate` and `enddate`: format `startdate=11.02.2025&enddate=21.02.2025`
+* `q`: String search, like `q=til+topps+bergen`
