@@ -42,7 +42,7 @@ Examples are:
 * only Enkel or Middels difficulty: https://www.dnt.no/aktivitetskalender?levels=1,2
 * Padletur: https://www.dnt.no/aktivitetskalender?subtypes=346
 * Bergen byfjellene vest and sentral: https://www.dnt.no/aktivitetskalender?areas=12220,12221
-* By municipality, only events in Øygarden: https://www.dnt.no/aktivitetskalender?municipalities=4626
+* By municipality, only events in Øygarden between 2025-02-11 and 2025-02-21: https://www.dnt.no/aktivitetskalender?municipalities=4626&startdate=11.02.2025&enddate=21.02.2025
 
 #### FilterIds
 * `types`: `320` (Fellestur), `321` (Arrangement), `322` (Kurs), `323` (Dugnad), `324` (Annet)
@@ -54,3 +54,4 @@ Examples are:
 * `levels`: `1` (Enkel), `2` (Middels), `3` (Krevende), `4` (Ekstra krevende)
 * `areas`: see file [AreaFacets.md](AreaFacets.md)
 * `municipalities`: see file [MunicipalityFacets.md](MunicipalityFacets.md)
+* `startdate` and `enddate`: format `startdate=11.02.2025&enddate=21.02.2025`
