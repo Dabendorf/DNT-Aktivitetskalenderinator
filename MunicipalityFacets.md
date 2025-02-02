@@ -1,700 +1,100 @@
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Stavanger",
-	"filterId": "1103",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Haugesund",
-	"filterId": "1106",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Sandnes",
-	"filterId": "1108",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Hjelmeland",
-	"filterId": "1133",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Karmøy",
-	"filterId": "1149",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Molde",
-	"filterId": "1506",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Ålesund",
-	"filterId": "1508",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Ørsta",
-	"filterId": "1520",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Rauma",
-	"filterId": "1539",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Sunndal",
-	"filterId": "1563",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Fjord",
-	"filterId": "1578",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Bodø",
-	"filterId": "1804",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Sømna",
-	"filterId": "1812",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Brønnøy",
-	"filterId": "1813",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Rana",
-	"filterId": "1833",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Meløy",
-	"filterId": "1837",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Sortland",
-	"filterId": "1870",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Oslo",
-	"filterId": "301",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Indre Østfold",
-	"filterId": "3118",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Rakkestad",
-	"filterId": "3120",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Bærum",
-	"filterId": "3201",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Asker",
-	"filterId": "3203",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Lillestrøm",
-	"filterId": "3205",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Ås",
-	"filterId": "3218",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Jevnaker",
-	"filterId": "3236",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Drammen",
-	"filterId": "3301",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Kongsberg",
-	"filterId": "3303",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Ringerike",
-	"filterId": "3305",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Hole",
-	"filterId": "3310",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Lier",
-	"filterId": "3312",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Nesbyen",
-	"filterId": "3322",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Hol",
-	"filterId": "3330",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Hamar",
-	"filterId": "3403",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Lillehammer",
-	"filterId": "3405",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Gjøvik",
-	"filterId": "3407",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Ringsaker",
-	"filterId": "3411",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Løten",
-	"filterId": "3412",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Stange",
-	"filterId": "3413",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Våler",
-	"filterId": "3419",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Elverum",
-	"filterId": "3420",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Skjåk",
-	"filterId": "3433",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Lom",
-	"filterId": "3434",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Vågå",
-	"filterId": "3435",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Nord-Fron",
-	"filterId": "3436",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Øyer",
-	"filterId": "3440",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Vestre Toten",
-	"filterId": "3443",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Gran",
-	"filterId": "3446",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Øystre Slidre",
-	"filterId": "3453",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Vang",
-	"filterId": "3454",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Horten",
-	"filterId": "3901",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Holmestrand",
-	"filterId": "3903",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Tønsberg",
-	"filterId": "3905",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Sandefjord",
-	"filterId": "3907",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Larvik",
-	"filterId": "3909",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Færder",
-	"filterId": "3911",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Skien",
-	"filterId": "4003",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Midt-Telemark",
-	"filterId": "4020",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Nissedal",
-	"filterId": "4030",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Vinje",
-	"filterId": "4036",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Risør",
-	"filterId": "4201",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Grimstad",
-	"filterId": "4202",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Arendal",
-	"filterId": "4203",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Kristiansand",
-	"filterId": "4204",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Gjerstad",
-	"filterId": "4211",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Valle",
-	"filterId": "4221",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Vennesla",
-	"filterId": "4223",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Sirdal",
-	"filterId": "4228",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Bergen",
-	"filterId": "4601",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Kinn",
-	"filterId": "4602",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Sveio",
-	"filterId": "4612",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Bømlo",
-	"filterId": "4613",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Stord",
-	"filterId": "4614",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Fitjar",
-	"filterId": "4615",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Tysnes",
-	"filterId": "4616",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Kvinnherad",
-	"filterId": "4617",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Ullensvang",
-	"filterId": "4618",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Ulvik",
-	"filterId": "4620",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Voss",
-	"filterId": "4621",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Kvam",
-	"filterId": "4622",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Bjørnafjorden",
-	"filterId": "4624",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Øygarden",
-	"filterId": "4626",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Vaksdal",
-	"filterId": "4628",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Alver",
-	"filterId": "4631",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Høyanger",
-	"filterId": "4638",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Sogndal",
-	"filterId": "4640",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Luster",
-	"filterId": "4644",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Askvoll",
-	"filterId": "4645",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Sunnfjord",
-	"filterId": "4647",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Stryn",
-	"filterId": "4651",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Trondheim",
-	"filterId": "5001",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Melhus",
-	"filterId": "5028",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Skaun",
-	"filterId": "5029",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Malvik",
-	"filterId": "5031",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Tydal",
-	"filterId": "5033",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Tromsø",
-	"filterId": "5501",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Harstad",
-	"filterId": "5503",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Kvæfjord",
-	"filterId": "5510",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Tjeldsund",
-	"filterId": "5512",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Senja",
-	"filterId": "5530",
-	"parentId": null,
-	"count": 0
-},
-{
-	"filterKey": "MunicipalityFacets",
-	"filterName": "Alta",
-	"filterId": "5601",
-	"parentId": null,
-	"count": 0
-}
+* Name: "Stavanger", filterId: 1103
+* Name: "Haugesund", filterId: 1106
+* Name: "Sandnes", filterId: 1108
+* Name: "Hjelmeland", filterId: 1133
+* Name: "Karmøy", filterId: 1149
+* Name: "Molde", filterId: 1506
+* Name: "Ålesund", filterId: 1508
+* Name: "Ørsta", filterId: 1520
+* Name: "Rauma", filterId: 1539
+* Name: "Sunndal", filterId: 1563
+* Name: "Fjord", filterId: 1578
+* Name: "Bodø", filterId: 1804
+* Name: "Sømna", filterId: 1812
+* Name: "Brønnøy", filterId: 1813
+* Name: "Rana", filterId: 1833
+* Name: "Meløy", filterId: 1837
+* Name: "Sortland", filterId: 1870
+* Name: "Oslo", filterId: 301
+* Name: "Indre Østfold", filterId: 3118
+* Name: "Rakkestad", filterId: 3120
+* Name: "Bærum", filterId: 3201
+* Name: "Asker", filterId: 3203
+* Name: "Lillestrøm", filterId: 3205
+* Name: "Ås", filterId: 3218
+* Name: "Jevnaker", filterId: 3236
+* Name: "Drammen", filterId: 3301
+* Name: "Kongsberg", filterId: 3303
+* Name: "Ringerike", filterId: 3305
+* Name: "Hole", filterId: 3310
+* Name: "Lier", filterId: 3312
+* Name: "Nesbyen", filterId: 3322
+* Name: "Hol", filterId: 3330
+* Name: "Hamar", filterId: 3403
+* Name: "Lillehammer", filterId: 3405
+* Name: "Gjøvik", filterId: 3407
+* Name: "Ringsaker", filterId: 3411
+* Name: "Løten", filterId: 3412
+* Name: "Stange", filterId: 3413
+* Name: "Våler", filterId: 3419
+* Name: "Elverum", filterId: 3420
+* Name: "Skjåk", filterId: 3433
+* Name: "Lom", filterId: 3434
+* Name: "Vågå", filterId: 3435
+* Name: "Nord-Fron", filterId: 3436
+* Name: "Øyer", filterId: 3440
+* Name: "Vestre Toten", filterId: 3443
+* Name: "Gran", filterId: 3446
+* Name: "Øystre Slidre", filterId: 3453
+* Name: "Vang", filterId: 3454
+* Name: "Horten", filterId: 3901
+* Name: "Holmestrand", filterId: 3903
+* Name: "Tønsberg", filterId: 3905
+* Name: "Sandefjord", filterId: 3907
+* Name: "Larvik", filterId: 3909
+* Name: "Færder", filterId: 3911
+* Name: "Skien", filterId: 4003
+* Name: "Midt-Telemark", filterId: 4020
+* Name: "Nissedal", filterId: 4030
+* Name: "Vinje", filterId: 4036
+* Name: "Risør", filterId: 4201
+* Name: "Grimstad", filterId: 4202
+* Name: "Arendal", filterId: 4203
+* Name: "Kristiansand", filterId: 4204
+* Name: "Gjerstad", filterId: 4211
+* Name: "Valle", filterId: 4221
+* Name: "Vennesla", filterId: 4223
+* Name: "Sirdal", filterId: 4228
+* Name: "Bergen", filterId: 4601
+* Name: "Kinn", filterId: 4602
+* Name: "Sveio", filterId: 4612
+* Name: "Bømlo", filterId: 4613
+* Name: "Stord", filterId: 4614
+* Name: "Fitjar", filterId: 4615
+* Name: "Tysnes", filterId: 4616
+* Name: "Kvinnherad", filterId: 4617
+* Name: "Ullensvang", filterId: 4618
+* Name: "Ulvik", filterId: 4620
+* Name: "Voss", filterId: 4621
+* Name: "Kvam", filterId: 4622
+* Name: "Bjørnafjorden", filterId: 4624
+* Name: "Øygarden", filterId: 4626
+* Name: "Vaksdal", filterId: 4628
+* Name: "Alver", filterId: 4631
+* Name: "Høyanger", filterId: 4638
+* Name: "Sogndal", filterId: 4640
+* Name: "Luster", filterId: 4644
+* Name: "Askvoll", filterId: 4645
+* Name: "Sunnfjord", filterId: 4647
+* Name: "Stryn", filterId: 4651
+* Name: "Trondheim", filterId: 5001
+* Name: "Melhus", filterId: 5028
+* Name: "Skaun", filterId: 5029
+* Name: "Malvik", filterId: 5031
+* Name: "Tydal", filterId: 5033
+* Name: "Tromsø", filterId: 5501
+* Name: "Harstad", filterId: 5503
+* Name: "Kvæfjord", filterId: 5510
+* Name: "Tjeldsund", filterId: 5512
+* Name: "Senja", filterId: 5530
+* Name: "Alta", filterId: 5601
