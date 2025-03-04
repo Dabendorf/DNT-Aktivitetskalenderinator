@@ -5,9 +5,15 @@ using MailKit.Net.Smtp;
 using FetchHikes.Constants;
 using FetchHikes.Dtos;
 using MailKit.Security;
+using Serilog;
+using Serilog.Core;
 
 class Program {
 	static async Task Main() {
+		Log.Logger = new LoggerConfiguration()
+			.WriteTo.Console()
+			.WriteTo.File(GlobalConstants.logs, rollingInterval: RollingInterval.Month)
+			.CreateLogger();
 
 		const string urlAppendix = "?duration=oversix";
 		const string apiUrl = $"{GlobalConstants.urlBase}{urlAppendix}";
@@ -15,13 +21,18 @@ class Program {
 		const string dbPath = GlobalConstants.databasePath;
 
 		var newHikes = await FetchNewHikes(apiUrl, dbPath);
+
 		if (newHikes.Any()) {
-			Console.WriteLine(newHikes.Count);
-			await SendEmail(newHikes);
+			Log.Information($"Number of new hikes found: {newHikes.Count}");
+			//await SendEmail(newHikes);
+		} else {
+			Log.Information("No new hikes found");
 		}
 	}
 
 	static async Task<List<Hike>> FetchNewHikes(string apiUrl, string dbPath) {
+		Log.Information($"Fetching new hikes from API {apiUrl}");
+
 		using var client = new HttpClient();
 		var response = await client.GetStringAsync(apiUrl);
 		var jsonDoc = JsonDocument.Parse(response);
@@ -42,6 +53,7 @@ class Program {
 		createCmd.CommandText = "CREATE TABLE IF NOT EXISTS Hikes (id INTEGER PRIMARY KEY, title TEXT, url TEXT, published_date TEXT)";
 		createCmd.ExecuteNonQuery();
 
+		Log.Information($"Check for new hikes in database {dbPath}");
 		// Check for new hikes
 		var newHikes = new List<Hike>();
 		foreach (var hike in hikes) {
@@ -91,7 +103,10 @@ class Program {
 			await smtp.AuthenticateAsync(emailSettings.Username, emailSettings.Password);
 			await smtp.SendAsync(email);
 			await smtp.DisconnectAsync(true);
+
+			Log.Error("Sent email with new hikes");
 		} catch (Exception ex) {
+			Log.Error($"Failed to send email: {ex}");
 			Console.WriteLine($"Failed to send email: {ex}");
 		}
 	}
