@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 using Microsoft.Data.Sqlite;
 using MimeKit;
 using MailKit.Net.Smtp;
+using FetchHikes.Constants;
+using FetchHikes.Dtos;
 
 class Program {
 	static async Task Main() {
-		const string apiUrl = "https://www.dnt.no/api/activities";
-		const string dbPath = "hikes.db";
+
+		const string urlAppendix = "?duration=oversix";
+		const string apiUrl = $"{GlobalConstants.urlBase}{urlAppendix}";
+
+		const string dbPath = GlobalConstants.databasePath;
 
 		var newHikes = await FetchNewHikes(apiUrl, dbPath);
 		if (newHikes.Any()) {
-			await SendEmail(newHikes);
+			Console.WriteLine(newHikes.Count);
+			// await SendEmail(newHikes); TODO later
 		}
 	}
 
@@ -66,20 +66,30 @@ class Program {
 	}
 
 	static async Task SendEmail(List<Hike> newHikes) {
-		var email = new MimeMessage();
-		email.From.Add(new MailboxAddress("Hike Notifier", "your-email@example.com"));
-		email.To.Add(new MailboxAddress("Recipient", "recipient@example.com"));
-		email.Subject = "New Hikes Found!";
+		try {
+			var secretsJson = await File.ReadAllTextAsync("secrets.json");
+			var emailSettings = JsonSerializer.Deserialize<EmailSettings>(secretsJson);
 
-		var body = "New hikes detected:\n\n" + string.Join("\n", newHikes.Select(h => $"{h.Title} - {h.Url}"));
-		email.Body = new TextPart("plain") { Text = body };
+			if (emailSettings == null) {
+				Console.WriteLine($"Failed to send email, could not read secrets.json");
+				return;
+			}
 
-		using var smtp = new SmtpClient();
-		await smtp.ConnectAsync("smtp.your-email-provider.com", 587, false);
-		await smtp.AuthenticateAsync("your-email@example.com", "your-password");
-		await smtp.SendAsync(email);
-		await smtp.DisconnectAsync(true);
+			var email = new MimeMessage();
+			email.From.Add(new MailboxAddress(emailSettings.FromName, emailSettings.FromEmail));
+			email.To.Add(new MailboxAddress(emailSettings.ToName, emailSettings.ToEmail));
+			email.Subject = MailConstants.Subject;
+
+			var body = "New hikes detected:\n\n" + string.Join("\n", newHikes.Select(h => $"{h.Title} - {h.Url}"));
+			email.Body = new TextPart("plain") { Text = body };
+
+			using var smtp = new SmtpClient();
+			await smtp.ConnectAsync(emailSettings.SmtpServer, emailSettings.SmtpPort, emailSettings.UseSsl);
+			await smtp.AuthenticateAsync(emailSettings.Username, emailSettings.Password);
+			await smtp.SendAsync(email);
+			await smtp.DisconnectAsync(true);
+		} catch (Exception ex) {
+			Console.WriteLine($"Failed to send email: {ex}");
+		}
 	}
 }
-
-record Hike(int Id, string Title, string Url, string PublishDate);

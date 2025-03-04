@@ -1,3 +1,5 @@
+.vscode
+secrets.json
 # Created by https://www.toptal.com/developers/gitignore/api/dotnetcore,visualstudiocode,csharp,aspnetcore,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=dotnetcore,visualstudiocode,csharp,aspnetcore,python
 
