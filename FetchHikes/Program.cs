@@ -4,6 +4,7 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using FetchHikes.Constants;
 using FetchHikes.Dtos;
+using MailKit.Security;
 
 class Program {
 	static async Task Main() {
@@ -16,7 +17,7 @@ class Program {
 		var newHikes = await FetchNewHikes(apiUrl, dbPath);
 		if (newHikes.Any()) {
 			Console.WriteLine(newHikes.Count);
-			// await SendEmail(newHikes); TODO later
+			await SendEmail(newHikes);
 		}
 	}
 
@@ -78,13 +79,15 @@ class Program {
 			var email = new MimeMessage();
 			email.From.Add(new MailboxAddress(emailSettings.FromName, emailSettings.FromEmail));
 			email.To.Add(new MailboxAddress(emailSettings.ToName, emailSettings.ToEmail));
-			email.Subject = MailConstants.Subject;
+			email.Subject = emailSettings.Subject;
 
 			var body = "New hikes detected:\n\n" + string.Join("\n", newHikes.Select(h => $"{h.Title} - {h.Url}"));
 			email.Body = new TextPart("plain") { Text = body };
 
 			using var smtp = new SmtpClient();
-			await smtp.ConnectAsync(emailSettings.SmtpServer, emailSettings.SmtpPort, emailSettings.UseSsl);
+			smtp.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+			//await smtp.ConnectAsync(emailSettings.SmtpServer, emailSettings.SmtpPort, emailSettings.UseSsl);
+			await smtp.ConnectAsync(emailSettings.SmtpServer, emailSettings.SmtpPort, SecureSocketOptions.StartTls);
 			await smtp.AuthenticateAsync(emailSettings.Username, emailSettings.Password);
 			await smtp.SendAsync(email);
 			await smtp.DisconnectAsync(true);

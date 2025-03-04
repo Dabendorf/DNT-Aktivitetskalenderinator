@@ -57,3 +57,31 @@ Examples are:
 * `municipalities`: see file [MunicipalityFacets.md](MunicipalityFacets.md)
 * `startdate` and `enddate`: format `startdate=11.02.2025&enddate=21.02.2025`
 * `q`: String search, like `q=til+topps+bergen`
+
+## The automation project
+The project is written in C# and runs via `dotnet`. It is a one time run creating a database. Every time you run it and there is a new tour which hasn't been there before, it adds them and sends an overview over new tours to you via email.
+
+## Install
+Make sure to have a valid version of dotnet and sqlite installed on your computer.
+
+## Secrets.json
+The programme wants you to create a `secrets.json` file into the `FetchHikes` folder including data about your email preferences, the email server etc. This makes it possible to send out new emails. If do not want this function, comment out the email function in the `Program.cs`.
+
+Format of the `secrets.json`
+```
+{
+	"SmtpServer": "smtp.yourserver.no",
+	"SmtpPort": 587,
+	"UseSsl": false,
+	"Username": "your@sendingemail.adress",
+	"Password": "Password",
+	"FromName": "DNT Notifier",
+	"FromEmail": "your@sendingemail.adress",
+	"ToName": "Receiving name",
+	"ToEmail": "your@receivingemail.adress",
+	"Subject": "Nye turer funnet"
+}
+```
+
+### Run project
+`dotnet run`
