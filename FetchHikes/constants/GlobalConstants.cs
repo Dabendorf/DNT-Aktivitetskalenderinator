@@ -6,4 +6,5 @@ public static class GlobalConstants {
 
 	public const string logs = "./logs/Log.txt";
 
+	public const string secretsPath = "secrets.json";
 }

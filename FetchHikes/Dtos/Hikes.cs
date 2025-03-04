@@ -1,6 +1,6 @@
 namespace FetchHikes.Dtos;
 
-record Hike(
+public record Hike(
 	int Id,
 	string Title,
 	string Url,
