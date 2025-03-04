@@ -1,5 +1,6 @@
 ﻿using FetchHikes.Constants;
 using Serilog;
+using FetchHikes.Services;
 
 class Program {
 	static async Task Main() {

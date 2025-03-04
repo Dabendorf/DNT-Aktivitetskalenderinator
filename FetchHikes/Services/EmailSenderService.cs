@@ -4,6 +4,9 @@ using MailKit.Security;
 using System.Text.Json;
 using FetchHikes.Dtos;
 using FetchHikes.Constants;
+using System.Text;
+
+namespace FetchHikes.Services;
 
 public class EmailSenderService {
 	public async Task SendEmail(List<Hike> newHikes) {
@@ -12,7 +15,7 @@ public class EmailSenderService {
 			var emailSettings = JsonSerializer.Deserialize<EmailSettings>(secretsJson);
 
 			if (emailSettings == null) {
-				Console.WriteLine($"Failed to send email, could not read secrets.json");
+				LoggerService.Logger.Error($"Failed to send email, could not read secrets.json");
 				return;
 			}
 
@@ -21,8 +24,8 @@ public class EmailSenderService {
 			email.To.Add(new MailboxAddress(emailSettings.ToName, emailSettings.ToEmail));
 			email.Subject = emailSettings.Subject;
 
-			var body = "New hikes detected:\n\n" + string.Join("\n", newHikes.Select(h => $"{h.Title} - {h.Url}"));
-			email.Body = new TextPart("plain") { Text = body };
+			var body = GenerateBody(newHikes);
+			email.Body = new TextPart("html") { Text = body };
 
 			using var smtp = new SmtpClient();
 			smtp.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
@@ -35,8 +38,54 @@ public class EmailSenderService {
 			LoggerService.Logger.Information("Sent email with new hikes");
 		} catch (Exception ex) {
 			LoggerService.Logger.Error($"Failed to send email: {ex}");
-			Console.WriteLine($"Failed to send email: {ex}");
 		}
+	}
+
+	private string GenerateBody(List<Hike> newHikes) {
+		var tableRows = new StringBuilder();
+
+		foreach (var hike in newHikes) {
+			tableRows.AppendLine("<tr>");
+			tableRows.AppendLine($"<td>{hike.Title}</td>");
+			tableRows.AppendLine($"<td>{hike.Duration}</td>");
+			tableRows.AppendLine($"<td>{hike.StartReadable}</td>");
+			tableRows.AppendLine($"<td>{hike.EndReadable}</td>");
+			tableRows.AppendLine($"<td><a href=\"{$"https://www.dnt.no/api/search/activitydetails?id={hike.Id}"}\">Link</a></td>");
+			tableRows.AppendLine($"<td>{hike.Level}</td>");
+			tableRows.AppendLine($"<td>{hike.OrganisorName}</td>");
+			tableRows.AppendLine($"<td>{hike.EventLocation}</td>");
+			tableRows.AppendLine($"<td>{hike.MainType}</td>");
+			tableRows.AppendLine($"<td>{hike.TargetGroups}</td>");
+			tableRows.AppendLine($"<td>{hike.PublishDate}</td>");
+			tableRows.AppendLine($"<td>{hike.RegistrationStart}</td>");
+			tableRows.AppendLine("</tr>");
+		}
+
+		var body = $@"
+            <html>
+                <body>
+                    <h2>New Hikes Detected</h2>
+                    <table border='1' style='border-collapse: collapse;'>
+                        <tr>
+                            <th>Title</th>
+                            <th>Duration</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>URL</th>
+                            <th>Level</th>
+                            <th>Organisor</th>
+                            <th>Location</th>
+                            <th>Main Type</th>
+                            <th>Target Groups</th>
+							<th>Publish Date</th>
+                            <th>Registration Start</th>
+                        </tr>
+                        {tableRows}
+                    </table>
+                </body>
+            </html>";
+
+		return body;
 	}
 
 	public async Task SendErrorEmail(string errorMessage) {
@@ -45,7 +94,7 @@ public class EmailSenderService {
 			var emailSettings = JsonSerializer.Deserialize<EmailSettings>(secretsJson);
 
 			if (emailSettings == null) {
-				Console.WriteLine($"Failed to send error email, could not read {GlobalConstants.secretsPath}");
+				LoggerService.Logger.Error($"Failed to send error email, could not read {GlobalConstants.secretsPath}");
 				return;
 			}
 
@@ -67,7 +116,6 @@ public class EmailSenderService {
 			LoggerService.Logger.Information("Sent error email.");
 		} catch (Exception ex) {
 			LoggerService.Logger.Error($"Failed to send error email: {ex}");
-			Console.WriteLine($"Failed to send error email: {ex}");
 		}
 	}
 }

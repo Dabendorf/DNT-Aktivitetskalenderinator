@@ -2,16 +2,13 @@ using System.Text.Json;
 using FetchHikes.Dtos;
 using Microsoft.Data.Sqlite;
 
-public class DNTapiService {
-	private readonly string _apiUrl;
-	private readonly string _dbPath;
+namespace FetchHikes.Services;
 
-	public DNTapiService(string apiUrl, string dbPath) {
-		_apiUrl = apiUrl;
-		_dbPath = dbPath;
-	}
+public class DNTapiService(string apiUrl, string dbPath) {
+	private readonly string _apiUrl = apiUrl;
+	private readonly string _dbPath = dbPath;
 
-	private string GetPropertyValue(JsonElement element, string propertyName, string fallback = "Unknown") =>
+	private static string GetPropertyValue(JsonElement element, string propertyName, string fallback = "Unknown") =>
 				element.TryGetProperty(propertyName, out var prop) ? prop.GetString() ?? fallback : fallback;
 
 	public async Task<List<Hike>> FetchNewHikes() {
@@ -89,6 +86,7 @@ public class DNTapiService {
 				insertCmd.Parameters.AddWithValue("$id", hike.Id);
 				insertCmd.Parameters.AddWithValue("$title", hike.Title);
 				insertCmd.Parameters.AddWithValue("$url", hike.Url);
+				//insertCmd.Parameters.AddWithValue("$url", $"https://www.dnt.no/api/search/activitydetails?id={hike.Id}");
 				insertCmd.Parameters.AddWithValue("$publishedDate", hike.PublishDate);
 				insertCmd.Parameters.AddWithValue("$eventLocation", hike.EventLocation);
 				insertCmd.Parameters.AddWithValue("$mainType", hike.MainType);
