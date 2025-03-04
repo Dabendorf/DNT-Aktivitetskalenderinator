@@ -1,4 +1,5 @@
 ﻿using FetchHikes.Constants;
+using FetchHikes.Dtos;
 using Serilog;
 using FetchHikes.Services;
 
@@ -7,13 +8,21 @@ class Program {
 		try {
 			LoggerService.Logger.Information("Application started.");
 
-			const string urlAppendix = "?duration=twothree&associations=25195,24939";
-			const string apiUrl = $"{GlobalConstants.urlBase}{urlAppendix}";
 			const string dbPath = GlobalConstants.databasePath;
 
-			var dntApiService = new DNTapiService(apiUrl, dbPath);
+			var dntApiService = new DNTapiService();
 
-			var newHikes = await dntApiService.FetchNewHikes();
+			List<string> searchQueries = ["?duration=twothree&associations=25195,24939", "?municipalities=4626&startdate=11.04.2025&enddate=21.07.2025"];
+
+			var newHikes = new List<Hike>();
+			foreach (var searchQuery in searchQueries) {
+				var apiUrl = $"{GlobalConstants.urlBase}{searchQuery}";
+				var newHikesTemp = await dntApiService.FetchNewHikes(apiUrl, dbPath);
+
+				if (newHikesTemp != null) {
+					newHikes.AddRange(newHikesTemp);
+				}
+			}
 
 			if (newHikes.Any()) {
 				LoggerService.Logger.Information($"Number of new hikes found: {newHikes.Count}");

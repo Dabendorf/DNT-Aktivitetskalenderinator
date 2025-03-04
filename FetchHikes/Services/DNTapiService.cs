@@ -4,18 +4,15 @@ using Microsoft.Data.Sqlite;
 
 namespace FetchHikes.Services;
 
-public class DNTapiService(string apiUrl, string dbPath) {
-	private readonly string _apiUrl = apiUrl;
-	private readonly string _dbPath = dbPath;
-
+public class DNTapiService() {
 	private static string GetPropertyValue(JsonElement element, string propertyName, string fallback = "Unknown") =>
 				element.TryGetProperty(propertyName, out var prop) ? prop.GetString() ?? fallback : fallback;
 
-	public async Task<List<Hike>> FetchNewHikes() {
-		LoggerService.Logger.Information($"Fetching new hikes from API {_apiUrl}");
+	public async Task<List<Hike>> FetchNewHikes(string apiUrl, string dbPath) {
+		LoggerService.Logger.Information($"Fetching new hikes from API {apiUrl}");
 
 		using var client = new HttpClient();
-		var response = await client.GetStringAsync(_apiUrl);
+		var response = await client.GetStringAsync(apiUrl);
 		var jsonDoc = JsonDocument.Parse(response);
 
 		var hikes = jsonDoc.RootElement.GetProperty("pageHits")
@@ -38,7 +35,7 @@ public class DNTapiService(string apiUrl, string dbPath) {
 				GetPropertyValue(h.GetProperty("activityViewModel"), "registrationStart")
 			)).ToList();
 
-		using var connection = new SqliteConnection($"Data Source={_dbPath}");
+		using var connection = new SqliteConnection($"Data Source={dbPath}");
 		connection.Open();
 
 		// Create table if not exists
@@ -61,7 +58,7 @@ public class DNTapiService(string apiUrl, string dbPath) {
 			)";
 		createCmd.ExecuteNonQuery();
 
-		LoggerService.Logger.Information($"Check for new hikes in database {_dbPath}");
+		LoggerService.Logger.Information($"Check for new hikes in database {dbPath}");
 		// Check for new hikes
 		var newHikes = new List<Hike>();
 		foreach (var hike in hikes) {
