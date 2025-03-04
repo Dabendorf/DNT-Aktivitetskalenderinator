@@ -47,14 +47,14 @@ Examples are:
 
 #### FilterIds
 * `types`: `320` (Fellestur), `321` (Arrangement), `322` (Kurs), `323` (Dugnad), `324` (Annet)
-* `subtype`: see file [SubtypeFacets.md](SubtypeFacets.md)
+* `subtype`: see file [SubtypeFacets.md](DocumentationApi/SubtypeFacets.md)
 * `duration`: `none` (Dagsaktivitet), `twothree` (2-3 dager), `foursix` (4-6 dager), `oversix` (Over 6 dager)
-* `associations`: see file [AssociationFacets.md](AssociationFacets.md)
+* `associations`: see file [AssociationFacets.md](DocumentationApi/AssociationFacets.md)
 * `targetGroups`: `Barn`, `Fjellsportsinteresserte`, `Funksjonshemmede`, `Seniorer`, `Ungdom`, `Utviklingshemmede`, `Voksne`
 * `organizergroups`: `454` (DNT Ung), `455` (Barnas Turlag), `456` (DNT Fjellsport), `457` (DNT Senior), `458` (Tilrettelagt), `459` (Vandregruppa), `471` (Ukategorisert)
 * `levels`: `1` (Enkel), `2` (Middels), `3` (Krevende), `4` (Ekstra krevende)
-* `areas`: see file [AreaFacets.md](AreaFacets.md)
-* `municipalities`: see file [MunicipalityFacets.md](MunicipalityFacets.md)
+* `areas`: see file [AreaFacets.md](DocumentationApi/AreaFacets.md)
+* `municipalities`: see file [MunicipalityFacets.md](DocumentationApi/MunicipalityFacets.md)
 * `startdate` and `enddate`: format `startdate=11.02.2025&enddate=21.02.2025`
 * `q`: String search, like `q=til+topps+bergen`
 
