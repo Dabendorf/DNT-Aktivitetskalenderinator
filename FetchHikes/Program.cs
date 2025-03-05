@@ -11,13 +11,18 @@ class Program {
 			const string dbPath = GlobalConstants.databasePath;
 
 			var dntApiService = new DNTapiService();
+			var databaseService = new DatabaseService();
 
 			List<string> searchQueries = ["?duration=twothree&associations=25195,24939", "?municipalities=4626&startdate=11.04.2025&enddate=21.07.2025"];
 
 			var newHikes = new List<Hike>();
+			await databaseService.DeletePastHikes(dbPath);
+
 			foreach (var searchQuery in searchQueries) {
 				var apiUrl = $"{GlobalConstants.urlBase}{searchQuery}";
-				var newHikesTemp = await dntApiService.FetchNewHikes(apiUrl, dbPath);
+				var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl);
+
+				var newHikesTemp = await databaseService.CompareWithDatabase(hikesInApi, dbPath);
 
 				if (newHikesTemp != null) {
 					newHikes.AddRange(newHikesTemp);
