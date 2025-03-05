@@ -44,7 +44,9 @@ public class EmailSenderService {
 	private string GenerateBody(List<Hike> newHikes) {
 		var tableRows = new StringBuilder();
 
-		foreach (var hike in newHikes) {
+		var orderedHikes = newHikes.OrderBy(hike => hike.Start).ToList();
+
+		foreach (var hike in orderedHikes) {
 			tableRows.AppendLine("<tr>");
 			tableRows.AppendLine($"<td>{hike.Title}</td>");
 			tableRows.AppendLine($"<td>{hike.Duration}</td>");

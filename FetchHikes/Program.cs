@@ -12,15 +12,16 @@ class Program {
 
 			var dntApiService = new DNTapiService();
 			var databaseService = new DatabaseService();
+			var helperService = new HelperService();
 
-			List<string> searchQueries = ["?duration=twothree&associations=25195,24939", "?municipalities=4626&startdate=11.04.2025&enddate=21.07.2025"];
+			Dictionary<string, string> searchQueries = helperService.ReadCsv(GlobalConstants.queryFilePath);
 
 			var newHikes = new List<Hike>();
 			await databaseService.DeletePastHikes(dbPath);
 
-			foreach (var searchQuery in searchQueries) {
+			foreach (var (description, searchQuery) in searchQueries) {
 				var apiUrl = $"{GlobalConstants.urlBase}{searchQuery}";
-				var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, searchQuery);
+				var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, description);
 
 				var newHikesTemp = await databaseService.CompareWithDatabase(hikesInApi, dbPath);
 
