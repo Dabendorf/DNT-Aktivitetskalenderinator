@@ -20,7 +20,7 @@ class Program {
 
 			foreach (var searchQuery in searchQueries) {
 				var apiUrl = $"{GlobalConstants.urlBase}{searchQuery}";
-				var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl);
+				var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, searchQuery);
 
 				var newHikesTemp = await databaseService.CompareWithDatabase(hikesInApi, dbPath);
 

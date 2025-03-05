@@ -1,6 +1,5 @@
 using System.Text.Json;
 using FetchHikes.Dtos;
-using Microsoft.Data.Sqlite;
 
 namespace FetchHikes.Services;
 
@@ -8,7 +7,7 @@ public class DNTapiService() {
 	private static string GetPropertyValue(JsonElement element, string propertyName, string fallback = "Unknown") =>
 				element.TryGetProperty(propertyName, out var prop) ? prop.GetString() ?? fallback : fallback;
 
-	public async Task<List<Hike>> GetHikesFromApi(string apiUrl) {
+	public async Task<List<Hike>> GetHikesFromApi(string apiUrl, string searchQuery) {
 		LoggerService.Logger.Information($"Fetching new hikes from API {apiUrl}");
 
 		using var client = new HttpClient();
@@ -25,6 +24,7 @@ public class DNTapiService() {
 				h.GetProperty("level").GetString() ?? "Unknown",
 				h.GetProperty("organizorName").GetString() ?? "Unknown",
 				GetPropertyValue(h.GetProperty("activityViewModel"), "eventLocation"),
+				searchQuery,
 				GetPropertyValue(h.GetProperty("activityViewModel"), "mainType"),
 				GetPropertyValue(h.GetProperty("activityViewModel"), "targetGroups"),
 				GetPropertyValue(h.GetProperty("activityViewModel"), "duration"),

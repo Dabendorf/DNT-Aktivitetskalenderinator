@@ -1,4 +1,3 @@
-using System.Text.Json;
 using FetchHikes.Dtos;
 using Microsoft.Data.Sqlite;
 
@@ -8,6 +7,16 @@ public class DatabaseService() {
 	public async Task DeletePastHikes(string dbPath) {
 		using var connection = new SqliteConnection($"Data Source={dbPath}");
 		await connection.OpenAsync();
+
+		// Check if the Hikes table exists
+		var checkCmd = connection.CreateCommand();
+		checkCmd.CommandText = "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='Hikes'";
+		var tableExists = (await checkCmd.ExecuteScalarAsync()) as long? ?? 0;
+
+		if (tableExists == 0) {
+			LoggerService.Logger.Information($"Table 'Hikes' does not exist in database {dbPath}. Skipping deletion.");
+			return;
+		}
 
 		var nowUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffK"); // Current UTC timestamp
 
@@ -32,6 +41,7 @@ public class DatabaseService() {
 				url TEXT,
 				published_date TEXT,
 				event_location TEXT,
+				search_query TEXT,
 				main_type TEXT,
 				target_groups TEXT,
 				duration TEXT,
@@ -59,10 +69,10 @@ public class DatabaseService() {
 				var insertCmd = connection.CreateCommand();
 				insertCmd.CommandText = @"
 					INSERT INTO Hikes (
-						id, title, url, published_date, event_location, main_type, target_groups, 
+						id, title, url, published_date, event_location, search_query, main_type, target_groups, 
 						duration, start, end, start_readable, end_readable, registration_start
 					) VALUES (
-						$id, $title, $url, $publishedDate, $eventLocation, $mainType, $targetGroups, 
+						$id, $title, $url, $publishedDate, $eventLocation, $searchQuery, $mainType, $targetGroups, 
 						$duration, $start, $end, $startReadable, $endReadable, $registrationStart
 					)";
 
@@ -72,6 +82,7 @@ public class DatabaseService() {
 				//insertCmd.Parameters.AddWithValue("$url", $"https://www.dnt.no/api/search/activitydetails?id={hike.Id}");
 				insertCmd.Parameters.AddWithValue("$publishedDate", hike.PublishDate);
 				insertCmd.Parameters.AddWithValue("$eventLocation", hike.EventLocation);
+				insertCmd.Parameters.AddWithValue("$searchQuery", hike.SearchQuery);
 				insertCmd.Parameters.AddWithValue("$mainType", hike.MainType);
 				insertCmd.Parameters.AddWithValue("$targetGroups", hike.TargetGroups);
 				insertCmd.Parameters.AddWithValue("$duration", hike.Duration);

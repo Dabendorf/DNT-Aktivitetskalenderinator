@@ -8,6 +8,7 @@ public record Hike(
 	string Level,
 	string OrganisorName,
 	string EventLocation,
+	string SearchQuery,
 	string MainType,
 	string TargetGroups,
 	string Duration,

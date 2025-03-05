@@ -54,6 +54,7 @@ public class EmailSenderService {
 			tableRows.AppendLine($"<td>{hike.Level}</td>");
 			tableRows.AppendLine($"<td>{hike.OrganisorName}</td>");
 			tableRows.AppendLine($"<td>{hike.EventLocation}</td>");
+			tableRows.AppendLine($"<td>{hike.SearchQuery}</td>");
 			tableRows.AppendLine($"<td>{hike.MainType}</td>");
 			tableRows.AppendLine($"<td>{hike.TargetGroups}</td>");
 			tableRows.AppendLine($"<td>{hike.PublishDate}</td>");
@@ -75,6 +76,7 @@ public class EmailSenderService {
                             <th>Level</th>
                             <th>Organisor</th>
                             <th>Location</th>
+							<th>SearchQuery</th>
                             <th>Main Type</th>
                             <th>Target Groups</th>
 							<th>Publish Date</th>
