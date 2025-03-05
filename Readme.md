@@ -83,5 +83,15 @@ Format of the `secrets.json`
 }
 ```
 
+### Choose hikes
+You have to provide a `queries.csv` file in the `FetchHikes` folder providing a list of search queries and description pairs.
+
+Example:
+```
+Description,Query
+"2-3 dager Bergen og Askøy","?duration=twothree&associations=25195,24939"
+"Bergen byfjellene vest and sentral","?areas=12220,12221"
+```
+
 ### Run project
 `dotnet run`
