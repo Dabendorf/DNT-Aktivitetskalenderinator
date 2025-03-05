@@ -20,7 +20,7 @@ class Program {
 			await databaseService.DeletePastHikes(dbPath);
 
 			foreach (var (description, searchQuery) in searchQueries) {
-				var apiUrl = $"{GlobalConstants.urlBase}{searchQuery}";
+				var apiUrl = $"{GlobalConstants.urlBase}?pageSize=1000&{searchQuery}";
 				var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, description);
 
 				var newHikesTemp = await databaseService.CompareWithDatabase(hikesInApi, dbPath);
