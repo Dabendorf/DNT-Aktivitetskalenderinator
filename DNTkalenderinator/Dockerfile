@@ -1,6 +1,5 @@
 # Use the official .NET 9.0 SDK image to build the application
-# This will be compatible with both AMD64 and ARM64
-FROM --platform=linux/amd64,linux/arm64 mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0-buster AS build
 
 # Set the working directory
 WORKDIR /app
@@ -15,8 +14,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o /out
 
 # Use the official .NET 9.0 runtime image to run the application
-# Again, this ensures the runtime is compatible with both platforms
-FROM --platform=linux/amd64,linux/arm64 mcr.microsoft.com/dotnet/aspnet:9.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-buster
 
 # Set the working directory
 WORKDIR /app
