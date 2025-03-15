@@ -1,5 +1,5 @@
 # Use the official .NET 9.0 SDK image to build the application
-FROM mcr.microsoft.com/dotnet/sdk:9.0-buster AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 # Set the working directory
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o /out
 
 # Use the official .NET 9.0 runtime image to run the application
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-buster
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 
 # Set the working directory
 WORKDIR /app
