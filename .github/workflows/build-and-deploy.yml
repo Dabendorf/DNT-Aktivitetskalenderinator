@@ -3,7 +3,7 @@ name: Build and Deploy Docker Image
 on:
   push:
     branches:
-      - main  # This triggers the workflow on push to the `main` branch
+      - master  # This triggers the workflow on push to the `master` branch
   workflow_dispatch:  # Allows manual triggering of the workflow from GitHub UI
 
 jobs:
