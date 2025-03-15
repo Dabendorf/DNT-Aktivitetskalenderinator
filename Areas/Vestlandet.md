@@ -20,7 +20,7 @@ En veldig un√∏ytral liste med ting som er spennende for en random fyr som bor p√
 * Name: "Skarvheimen", filterId: 1232
 * Name: "Hardangervidda", filterId: 1235
 
-## Jotunheimen
+### Jotunheimen
 * Name: "Fjordane", filterId: 1241
 * Name: "Breheimen med Jostedalsbreen", filterId: 1227
 * Name: "Jotunheimen", filterId: 1231

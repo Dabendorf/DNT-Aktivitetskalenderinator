@@ -47,7 +47,7 @@ Examples are:
 
 #### FilterIds
 * `types`: `320` (Fellestur), `321` (Arrangement), `322` (Kurs), `323` (Dugnad), `324` (Annet)
-* `subtype`: see file [SubtypeFacets.md](DocumentationApi/SubtypeFacets.md)
+* `subtypes`: see file [SubtypeFacets.md](DocumentationApi/SubtypeFacets.md)
 * `duration`: `none` (Dagsaktivitet), `twothree` (2-3 dager), `foursix` (4-6 dager), `oversix` (Over 6 dager)
 * `associations`: see file [AssociationFacets.md](DocumentationApi/AssociationFacets.md)
 * `targetGroups`: `Barn`, `Fjellsportsinteresserte`, `Funksjonshemmede`, `Seniorer`, `Ungdom`, `Utviklingshemmede`, `Voksne`
@@ -89,9 +89,11 @@ You have to provide a `queries.csv` file in the `DNTkalenderinator` folder provi
 Example:
 ```
 Description,Query
+"[ALL]",
 "2-3 dager Bergen og Askøy","duration=twothree&associations=25195,24939"
 "Bergen byfjellene vest and sentral","areas=12220,12221"
 ```
+There is an optional all-kvantor which is applied to all strings, being denoted with [ALL]
 
 ### Run project
 `dotnet run` (after having run `dotnet build`)
@@ -132,3 +134,21 @@ You may add this line to your cronjob file by running `crontab -e`
  ```
 
  The path of the dotnet installation (`whereis dotnet`) and the project must be changed as well. Good luck.
+
+
+## Vestlandet
+This chapter is a collection of search-queries for the `queries.csv` serving people, who want to hike in Norway's most exiting region, Vestlandet
+```
+Description,Query
+"[ALL]","&levels=2,3,4&targetGroups=Fjellsportsinteresserte,Ungdom,Voksne&types=320,324&subtypes=345,361,328,348,352,346,452"
+"Hordaland","municipalities=4601,4602,4612,4613,4614,4615,4616,4617,4618,4620,4621,4622,4624,4626,4628,4631"
+"Sogn og MR","municipalities=4638,4640,4644,4645,4647,4651,1506,1508,1520,1539,1563,1578"
+"Bergen and surroundings area","areas=12174,12211,12218,12220,12221,1266,1238,1239,1240"
+```
+
+The list includes a couple of standard filters
+* Only non-easy tours: `levels=2,3,4`
+* No senior or Barnas turlag: `organizergroups=454,456,459,471` or `targetGroups=Fjellsportsinteresserte,Ungdom,Voksne`
+* No Arrangement, Kurs og Dugnad: `types=320,324`
+* Only hikes, sykling tours and water activities: `subtypes=345,361,328,348,352,346,452`
+* `&levels=2,3,4&targetGroups=Fjellsportsinteresserte,Ungdom,Voksne&types=320,324&subtypes=345,361,328,348,352,346,452`

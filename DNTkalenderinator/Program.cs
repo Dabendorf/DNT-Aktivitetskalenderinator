@@ -16,11 +16,15 @@ class Program {
 
 			Dictionary<string, string> searchQueries = helperService.ReadCsv(GlobalConstants.queryFilePath);
 
+			// if one object is called [ALL], it is a superfilter for all queries
+			var superFilter = searchQueries.TryGetValue("[ALL]", out var value) ? value : "";
+			searchQueries.Remove("[ALL]");
+
 			var newHikes = new List<Hike>();
 			await databaseService.DeletePastHikes(dbPath);
 
 			foreach (var (description, searchQuery) in searchQueries) {
-				var apiUrl = $"{GlobalConstants.urlBase}?pageSize=1000&{searchQuery}";
+				var apiUrl = $"{GlobalConstants.urlBase}?pageSize=1000&{superFilter}{searchQuery}";
 				var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, description);
 
 				var newHikesTemp = await databaseService.CompareWithDatabase(hikesInApi, dbPath);
