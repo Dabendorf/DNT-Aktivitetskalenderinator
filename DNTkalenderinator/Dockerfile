@@ -10,11 +10,11 @@ COPY . .
 # Restore dependencies
 RUN dotnet restore
 
-# Build the project
+# Build the project and publish it to the /out directory
 RUN dotnet publish -c Release -o /out
 
-# Use the official .NET 9.0 runtime image to run the application
-FROM mcr.microsoft.com/dotnet/aspnet:9.0
+# Use the official .NET 9.0 runtime image (not ASP.NET) to run the application
+FROM mcr.microsoft.com/dotnet/runtime:9.0
 
 # Set the working directory
 WORKDIR /app
