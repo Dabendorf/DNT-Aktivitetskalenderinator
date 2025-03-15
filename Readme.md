@@ -65,7 +65,7 @@ The project is written in C# and runs via `dotnet`. It is a one time run creatin
 Make sure to have a valid version of dotnet and sqlite installed on your computer.
 
 ## Secrets.json
-The programme wants you to create a `secrets.json` file into the `FetchHikes` folder including data about your email preferences, the email server etc. This makes it possible to send out new emails. If do not want this function, comment out the email function in the `Program.cs`.
+The programme wants you to create a `secrets.json` file into the `DNTkalenderinator` folder including data about your email preferences, the email server etc. This makes it possible to send out new emails. If do not want this function, comment out the email function in the `Program.cs`.
 
 Format of the `secrets.json`
 ```
@@ -84,7 +84,7 @@ Format of the `secrets.json`
 ```
 
 ### Choose hikes
-You have to provide a `queries.csv` file in the `FetchHikes` folder providing a list of search queries and description pairs.
+You have to provide a `queries.csv` file in the `DNTkalenderinator` folder providing a list of search queries and description pairs.
 
 Example:
 ```
