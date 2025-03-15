@@ -41,10 +41,10 @@ jobs:
     - name: Build and Push Docker images for AMD64 and ARM64
       run: |
         # Build for AMD64
-        docker buildx build --platform linux/amd64 -t markusklingerdolvik/dntkalenderinator:amd64-latest ./DNTkalenderinator
+        docker buildx build --platform linux/amd64 -t markusklingerdolvik/dntkalenderinator:amd64-latest ./DNTkalenderinator --push
 
-        # Build for ARM64
-        docker buildx build --platform linux/arm64 -t markusklingerdolvik/dntkalenderinator:arm64-latest ./DNTkalenderinator
+        # Build for ARM64 and push to Docker Hub
+        docker buildx build --platform linux/arm64 -t markusklingerdolvik/dntkalenderinator:arm64-latest ./DNTkalenderinator --push
 
         # Push the images to Docker Hub
         docker push markusklingerdolvik/dntkalenderinator:amd64-latest
