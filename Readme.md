@@ -130,3 +130,5 @@ You may add this line to your cronjob file by running `crontab -e`
 ```
  0 0 * * 0 cd /home/pi/Bots/DNTAktivitetskalenderinator/DNTkalenderinator && /home/pi/.dotnet/dotnet run --project /home/pi/Bots/DNTAktivitetskalenderinator/DNTkalenderinator/DNTkalenderinator.csproj
  ```
+
+ The path of the dotnet installation (`whereis dotnet`) and the project must be changed as well. Good luck.
