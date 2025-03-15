@@ -60,6 +60,7 @@ public class DatabaseService() {
 		foreach (var hike in hikes) {
 			var checkCmd = connection.CreateCommand();
 			checkCmd.CommandText = "SELECT COUNT(*) FROM Hikes WHERE id = $id";
+
 			checkCmd.Parameters.AddWithValue("$id", hike.Id);
 
 			var result = await checkCmd.ExecuteScalarAsync();

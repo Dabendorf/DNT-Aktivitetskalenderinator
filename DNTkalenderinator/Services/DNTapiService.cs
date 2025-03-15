@@ -33,7 +33,7 @@ public class DNTapiService() {
 				$"{GetPropertyValue(h.GetProperty("activityViewModel"), "startDate")} {GetPropertyValue(h.GetProperty("activityViewModel"), "startTime")}",
 				$"{GetPropertyValue(h.GetProperty("activityViewModel"), "endDate")} {GetPropertyValue(h.GetProperty("activityViewModel"), "endTime")}",
 				GetPropertyValue(h.GetProperty("activityViewModel"), "registrationStart")
-			)).ToList();
+			)).Where(h => DateTimeOffset.TryParse(h.Start, out var startTime) && startTime > TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTimeOffset.UtcNow, "Europe/Oslo")).ToList();
 
 		return hikes;
 	}
