@@ -17,20 +17,31 @@ class Program {
 			Dictionary<string, string> searchQueries = helperService.ReadCsv(GlobalConstants.queryFilePath);
 
 			// if one object is called [ALL], it is a superfilter for all queries
-			var superFilter = searchQueries.TryGetValue("[ALL]", out var value) ? value : "";
+			var superFilter = searchQueries.TryGetValue("[ALL]", out var valueInclude) ? valueInclude : "";
 			searchQueries.Remove("[ALL]");
+
+			// elements inside [EXCLUDE] (comma separated) are searched inside the title, if in a title, its skipped
+			var superExcluder = searchQueries.TryGetValue("[EXCLUDE]", out var valueExclude) ? valueExclude.Split(',') : Array.Empty<string>();
+			searchQueries.Remove("[EXCLUDE]");
 
 			var newHikes = new List<Hike>();
 			await databaseService.DeletePastHikes(dbPath);
 
 			foreach (var (description, searchQuery) in searchQueries) {
-				var apiUrl = $"{GlobalConstants.urlBase}?pageSize=1000&{superFilter}{searchQuery}";
+				var apiUrl = $"{GlobalConstants.urlBase}?pageSize=1000{superFilter}{searchQuery}";
 				var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, description);
 
 				var newHikesTemp = await databaseService.CompareWithDatabase(hikesInApi, dbPath);
 
 				if (newHikesTemp != null) {
-					newHikes.AddRange(newHikesTemp);
+					foreach (var hike in newHikesTemp) {
+						// Check if the title contains any word in the exclusion list
+						if (superExcluder.Any(excludeWord => hike.Title.Contains(excludeWord, StringComparison.OrdinalIgnoreCase))) {
+							continue; // Skip adding this hike
+						}
+
+						newHikes.Add(hike);
+					}
 				}
 			}
 

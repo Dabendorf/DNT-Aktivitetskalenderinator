@@ -89,11 +89,11 @@ You have to provide a `queries.csv` file in the `DNTkalenderinator` folder provi
 Example:
 ```
 Description,Query
-"[ALL]",
+"[ALL]","&levels=2,3,4&targetGroups=Fjellsportsinteresserte,Ungdom,Voksne&types=320,324&subtypes=345,361,328,348,352,346,452&startdate=20.04.2025"
 "2-3 dager Bergen og Askøy","duration=twothree&associations=25195,24939"
 "Bergen byfjellene vest and sentral","areas=12220,12221"
 ```
-There is an optional all-kvantor which is applied to all strings, being denoted with [ALL]
+There is an optional all-kvantor which is applied to all strings, being denoted with [ALL]. The [EXCLUDE] parameter filters away words included in the title, so please be very cautious here.
 
 ### Run project
 `dotnet run` (after having run `dotnet build`)
@@ -140,15 +140,17 @@ You may add this line to your cronjob file by running `crontab -e`
 This chapter is a collection of search-queries for the `queries.csv` serving people, who want to hike in Norway's most exiting region, Vestlandet
 ```
 Description,Query
-"[ALL]","&levels=2,3,4&targetGroups=Fjellsportsinteresserte,Ungdom,Voksne&types=320,324&subtypes=345,361,328,348,352,346,452"
-"Hordaland","municipalities=4601,4602,4612,4613,4614,4615,4616,4617,4618,4620,4621,4622,4624,4626,4628,4631"
-"Sogn og MR","municipalities=4638,4640,4644,4645,4647,4651,1506,1508,1520,1539,1563,1578"
-"Bergen and surroundings area","areas=12174,12211,12218,12220,12221,1266,1238,1239,1240"
+"[ALL]","&levels=3,4&targetGroups=Fjellsportsinteresserte,Ungdom,Voksne&types=320,324&subtypes=345,361,328,348,352,346,452&startdate=20.04.2025"
+"[EXCLUDE]","Tysdagstur dagtid,Friskus,Ostrimmen,Treningstur,AKTIV: Dagstur,AKTIV: Kveldstur"
+"Hordaland","&municipalities=4601,4602,4612,4613,4614,4615,4616,4617,4618,4620,4621,4622,4624,4626,4628,4631"
+"Bergen and surroundings area","&areas=12174,12211,12218,12220,12221,1266,1238,1239,1240"
+"Vestlandske turlag","&associations=25195,25114,25116,24939,25068,24876,24904,25197,25107,25205,25238,26219,25117,26200,26202,27287,25504,26346,24901,25419,25874,25111,25118,25119,26220,25108,25120,24897,25206,25199,25130,25122,24931,26086,25123,25210,25200,25193,25198,25113,25112,25207,25232,25105,25124,26201,25201,24873,25194,25110,25109,25202,25204,25203,25125,25233,24898,25127,25128,25129"
+"Searching for strings in Vestlandet","q=Hardanger,Hardangervidden,Folgefonna,Stølsheimen,Finse"
 ```
 
 The list includes a couple of standard filters
-* Only non-easy tours: `levels=2,3,4`
+* Only non-easy tours: `levels=3,4`
 * No senior or Barnas turlag: `organizergroups=454,456,459,471` or `targetGroups=Fjellsportsinteresserte,Ungdom,Voksne`
 * No Arrangement, Kurs og Dugnad: `types=320,324`
 * Only hikes, sykling tours and water activities: `subtypes=345,361,328,348,352,346,452`
-* `&levels=2,3,4&targetGroups=Fjellsportsinteresserte,Ungdom,Voksne&types=320,324&subtypes=345,361,328,348,352,346,452`
+* `&levels=3,4&targetGroups=Fjellsportsinteresserte,Ungdom,Voksne&types=320,324&subtypes=345,361,328,348,352,346,452`
