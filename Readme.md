@@ -94,4 +94,39 @@ Description,Query
 ```
 
 ### Run project
-`dotnet run`
+`dotnet run` (after having run `dotnet build`)
+
+### Docker
+Docker is a piece of shit and doesn't work. There is a pipeline for building docker inside this project, you are welcome to fix it.
+
+The following commands for pulling and running it on various systems my help you.
+```sudo docker pull --platform linux/amd64 markusklingerdolvik/dntkalenderinator:latest
+sudo docker run --rm -v  /home/pi/Bots/DNTAktivitetskalenderinator/DNTkalenderinator:/app markusklingerdolvik/dntkalenderinator:latest
+
+docker pull --platform linux/arm64 markusklingerdolvik/dntkalenderinator:latest
+docker run --rm -v --platform linux/arm64 /home/pi/Bots/DNTAktivitetskalenderinator/DNTkalenderinator:/app markusklingerdolvik/dntkalenderinator:latest
+```
+
+## Run on a raspberry pi automatically
+If you have the desire to run this project automatically on a server (raspberry pi), to finally automate this with weekly cronjobs, go through these steps
+
+### Install dotnet
+see [Official guide](https://learn.microsoft.com/en-us/dotnet/iot/deployment)
+```
+curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel STS
+echo 'export DOTNET_ROOT=$HOME/.dotnet' >> ~/.zshrc
+echo 'export PATH=$PATH:$HOME/.dotnet' >> ~/.zshrc
+```
+If dotnet 9 is not supported, install an older version
+```
+curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 8.0.407
+```
+
+### Build and add files
+Run `dotnet build` and add the `secrets.json` and `queries.csv` in your root folder of the project (as named above)
+
+### Make cronjob
+You may add this line to your cronjob file by running `crontab -e`
+```
+ 0 0 * * 0 cd /home/pi/Bots/DNTAktivitetskalenderinator/DNTkalenderinator && /home/pi/.dotnet/dotnet run --project /home/pi/Bots/DNTAktivitetskalenderinator/DNTkalenderinator/DNTkalenderinator.csproj
+ ```
