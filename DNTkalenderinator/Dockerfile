@@ -1,12 +1,26 @@
-FROM mcr.microsoft.com/dotnet/runtime:8.0 AS base
+# Use the official .NET 9.0 SDK image to build the application
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
+# Set the working directory
 WORKDIR /app
 
-# Copy the published .NET app from a local build
-COPY ./publish .
+# Copy the project files into the container
+COPY . .
 
-# Set execution permissions if needed
-RUN chmod +x MyDotNetApp
+# Restore dependencies
+RUN dotnet restore
 
-# Run the application
-CMD ["./MyDotNetApp"]
+# Build the project
+RUN dotnet publish -c Release -o /out
+
+# Use the official .NET 9.0 runtime image to run the application
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the built application from the previous stage
+COPY --from=build /out .
+
+# Set the entry point to run the application
+ENTRYPOINT ["dotnet", "DNTkalenderinator.dll"]
