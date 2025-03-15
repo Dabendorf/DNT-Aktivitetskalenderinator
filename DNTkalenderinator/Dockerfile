@@ -1,3 +1,5 @@
+# Written by the text prediction programme of my trust since I don't like this admin shit
+
 # Use the official .NET 9.0 SDK image to build the application
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
