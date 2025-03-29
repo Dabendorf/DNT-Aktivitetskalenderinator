@@ -141,11 +141,15 @@ This chapter is a collection of search-queries for the `queries.csv` serving peo
 ```
 Description,Query
 "[ALL]","&levels=3,4&targetGroups=Fjellsportsinteresserte,Ungdom,Voksne&types=320,324&subtypes=345,361,328,348,352,346,452&startdate=20.04.2025"
-"[EXCLUDE]","Tysdagstur dagtid,Friskus,Ostrimmen,Treningstur,AKTIV: Dagstur,AKTIV: Kveldstur"
+"[EXCLUDE]","Tysdagstur dagtid,Friskus,Ostrimmen,Treningstur,AKTIV: Dagstur,AKTIV: Kveldstur,Avlyst,Tirsdagstur"
 "Hordaland","&municipalities=4601,4602,4612,4613,4614,4615,4616,4617,4618,4620,4621,4622,4624,4626,4628,4631"
 "Bergen and surroundings area","&areas=12174,12211,12218,12220,12221,1266,1238,1239,1240"
 "Vestlandske turlag","&associations=25195,25114,25116,24939,25068,24876,24904,25197,25107,25205,25238,26219,25117,26200,26202,27287,25504,26346,24901,25419,25874,25111,25118,25119,26220,25108,25120,24897,25206,25199,25130,25122,24931,26086,25123,25210,25200,25193,25198,25113,25112,25207,25232,25105,25124,26201,25201,24873,25194,25110,25109,25202,25204,25203,25125,25233,24898,25127,25128,25129"
-"Searching for strings in Vestlandet","q=Hardanger,Hardangervidden,Folgefonna,Stølsheimen,Finse"
+"Stringsearch: Hardanger","&q=Hardanger"
+"Stringsearch: Hardangervidden","&q=Hardangervidda"
+"Stringsearch: Folgefonna","&q=Folgefonna"
+"Stringsearch: Stølsheimen","&q=Stølsheimen"
+"Stringsearch: Finse","&q=Finse"
 ```
 
 The list includes a couple of standard filters

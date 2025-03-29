@@ -22,7 +22,7 @@ public class EmailSenderService {
 			var email = new MimeMessage();
 			email.From.Add(new MailboxAddress(emailSettings.FromName, emailSettings.FromEmail));
 			email.To.Add(new MailboxAddress(emailSettings.ToName, emailSettings.ToEmail));
-			email.Subject = emailSettings.Subject;
+			email.Subject = $"{emailSettings.Subject} (Antall: {newHikes.Count})";
 
 			var body = GenerateBody(newHikes);
 			email.Body = new TextPart("html") { Text = body };
