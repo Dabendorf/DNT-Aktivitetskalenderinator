@@ -121,13 +121,19 @@ public class DatabaseService() {
 
 		using var reader = await selectCmd.ExecuteReaderAsync();
 		while (await reader.ReadAsync()){
+			var levelOrdinal = reader.GetOrdinal("level");
+			var organisorNameOrdinal = reader.GetOrdinal("organisor_name");
+
+			var level = reader.IsDBNull(levelOrdinal) ? "Null" : reader.GetString(levelOrdinal);
+			var organisorName = reader.IsDBNull(organisorNameOrdinal) ? "Null" : reader.GetString(organisorNameOrdinal);
+
 			var hike = new Hike(
 				Id: reader.GetInt32(reader.GetOrdinal("id")),
 				Title: reader.GetString(reader.GetOrdinal("title")),
 				Url: reader.GetString(reader.GetOrdinal("url")),
 				PublishDate: reader.GetString(reader.GetOrdinal("published_date")),
-				Level: reader.GetString(reader.GetOrdinal("level")),
-				OrganisorName: reader.GetString(reader.GetOrdinal("organisor_name")),
+				Level: level,
+    			OrganisorName: organisorName,
 				EventLocation: reader.GetString(reader.GetOrdinal("event_location")),
 				SearchQuery: reader.GetString(reader.GetOrdinal("search_query")),
 				MainType: reader.GetString(reader.GetOrdinal("main_type")),

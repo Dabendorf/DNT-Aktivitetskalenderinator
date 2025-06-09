@@ -37,6 +37,10 @@ class Program {
 			if(summaryEmail) {
 				var newHikesTemp = await databaseService.GetCurrentHikeTable(dbPath);
 				newHikes.AddRange(newHikes);
+
+				if (newHikesTemp != null) {
+					newHikes.AddRange(newHikesTemp);
+				}
 			} else {
 				// Loop through all search queries, running API calls
 				foreach (var (description, searchQuery) in searchQueries) {
@@ -44,18 +48,14 @@ class Program {
 					var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, description);
 
 					// Compare with database, only returns things not being in the database yet
-					var newHikesTemp = await databaseService.CompareWithDatabase(hikesInApi, dbPath);
+					var filteredHikes = hikesInApi
+						.Where(hike => !superExcluder.Any(excludeWord => hike.Title.Contains(excludeWord, StringComparison.OrdinalIgnoreCase)))
+						.ToList();
 
-					// skip over all hikes with excluded content
+					var newHikesTemp = await databaseService.CompareWithDatabase(filteredHikes, dbPath);
+
 					if (newHikesTemp != null) {
-						foreach (var hike in newHikesTemp) {
-							// Check if the title contains any word in the exclusion list
-							if (superExcluder.Any(excludeWord => hike.Title.Contains(excludeWord, StringComparison.OrdinalIgnoreCase))) {
-								continue; // Skip adding this hike
-							}
-
-							newHikes.Add(hike);
-						}
+						newHikes.AddRange(newHikesTemp);
 					}
 				}
 			}
