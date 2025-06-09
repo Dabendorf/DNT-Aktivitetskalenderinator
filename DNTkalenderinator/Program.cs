@@ -4,7 +4,7 @@ using Serilog;
 using DNTkalenderinator.Services;
 
 class Program {
-	static async Task Main() {
+	static async Task Main(string[] args) {
 		try {
 			LoggerService.Logger.Information("Application started.");
 
@@ -22,30 +22,40 @@ class Program {
 			searchQueries.Remove("[ALL]");
 
 			// elements inside [EXCLUDE] (comma separated) are searched inside the title, if in a title, its skipped
-			var superExcluder = searchQueries.TryGetValue("[EXCLUDE]", out var valueExclude) ? valueExclude.Split(',') : Array.Empty<string>();
+			var superExcluder = searchQueries.TryGetValue("[EXCLUDE]", out var valueExclude) ? valueExclude.Split(',') : [];
 			searchQueries.Remove("[EXCLUDE]");
 
 			// Delete all hikes which are in the past
-			var newHikes = new List<Hike>();
 			await databaseService.DeletePastHikes(dbPath);
 
-			// Loop through all search queries, running API calls
-			foreach (var (description, searchQuery) in searchQueries) {
-				var apiUrl = $"{GlobalConstants.urlBase}?pageSize=1000{superFilter}{searchQuery}";
-				var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, description);
+			var newHikes = new List<Hike>();
+			
+			// Since the programme sends an email every week and you may want to keep them for the summer, you get a lot of emails
+			// if you pass the argument --summary to it, you get a new email with all previously sent hikes which are still happening
+			var summaryEmail = args.Contains("--summary", StringComparer.OrdinalIgnoreCase);
 
-				// Compare with database, only returns things not being in the database yet
-				var newHikesTemp = await databaseService.CompareWithDatabase(hikesInApi, dbPath);
+			if(summaryEmail) {
+				var newHikesTemp = await databaseService.GetCurrentHikeTable(dbPath);
+				newHikes.AddRange(newHikes);
+			} else {
+				// Loop through all search queries, running API calls
+				foreach (var (description, searchQuery) in searchQueries) {
+					var apiUrl = $"{GlobalConstants.urlBase}?pageSize=1000{superFilter}{searchQuery}";
+					var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, description);
 
-				// skip over all hikes with excluded content
-				if (newHikesTemp != null) {
-					foreach (var hike in newHikesTemp) {
-						// Check if the title contains any word in the exclusion list
-						if (superExcluder.Any(excludeWord => hike.Title.Contains(excludeWord, StringComparison.OrdinalIgnoreCase))) {
-							continue; // Skip adding this hike
+					// Compare with database, only returns things not being in the database yet
+					var newHikesTemp = await databaseService.CompareWithDatabase(hikesInApi, dbPath);
+
+					// skip over all hikes with excluded content
+					if (newHikesTemp != null) {
+						foreach (var hike in newHikesTemp) {
+							// Check if the title contains any word in the exclusion list
+							if (superExcluder.Any(excludeWord => hike.Title.Contains(excludeWord, StringComparison.OrdinalIgnoreCase))) {
+								continue; // Skip adding this hike
+							}
+
+							newHikes.Add(hike);
 						}
-
-						newHikes.Add(hike);
 					}
 				}
 			}
