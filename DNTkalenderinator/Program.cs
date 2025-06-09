@@ -14,6 +14,7 @@ class Program {
 			var databaseService = new DatabaseService();
 			var helperService = new HelperService();
 
+			// A list of search queries
 			Dictionary<string, string> searchQueries = helperService.ReadCsv(GlobalConstants.queryFilePath);
 
 			// if one object is called [ALL], it is a superfilter for all queries
@@ -24,15 +25,19 @@ class Program {
 			var superExcluder = searchQueries.TryGetValue("[EXCLUDE]", out var valueExclude) ? valueExclude.Split(',') : Array.Empty<string>();
 			searchQueries.Remove("[EXCLUDE]");
 
+			// Delete all hikes which are in the past
 			var newHikes = new List<Hike>();
 			await databaseService.DeletePastHikes(dbPath);
 
+			// Loop through all search queries, running API calls
 			foreach (var (description, searchQuery) in searchQueries) {
 				var apiUrl = $"{GlobalConstants.urlBase}?pageSize=1000{superFilter}{searchQuery}";
 				var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, description);
 
+				// Compare with database, only returns things not being in the database yet
 				var newHikesTemp = await databaseService.CompareWithDatabase(hikesInApi, dbPath);
 
+				// skip over all hikes with excluded content
 				if (newHikesTemp != null) {
 					foreach (var hike in newHikesTemp) {
 						// Check if the title contains any word in the exclusion list
@@ -45,6 +50,7 @@ class Program {
 				}
 			}
 
+			// Send Email if new hikes are found
 			if (newHikes.Any()) {
 				LoggerService.Logger.Information($"Number of new hikes found: {newHikes.Count}");
 				var emailSenderService = new EmailSenderService();

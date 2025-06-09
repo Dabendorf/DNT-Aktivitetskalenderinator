@@ -101,4 +101,44 @@ public class DatabaseService() {
 
 		return newHikes;
 	}
+
+	/**
+	 * The difference between this one compared to the other one is that it gets all hikes which are in the database and will be in the future
+	 * This can be used to write a consolidation email which puts all the other former emails together
+	 */
+	public async Task<List<Hike>> GetCurrentHikeTable(string dbPath) {
+		using var connection = new SqliteConnection($"Data Source={dbPath}");
+		await connection.OpenAsync();
+
+		var hikes = new List<Hike>();
+
+		var selectCmd = connection.CreateCommand();
+		selectCmd.CommandText = "SELECT * FROM Hikes";
+
+		using var reader = await selectCmd.ExecuteReaderAsync();
+		while (await reader.ReadAsync()){
+			var hike = new Hike(
+				Id: reader.GetInt32(reader.GetOrdinal("id")),
+				Title: reader.GetString(reader.GetOrdinal("title")),
+				Url: reader.GetString(reader.GetOrdinal("url")),
+				PublishDate: reader.GetString(reader.GetOrdinal("published_date")),
+				Level: reader.GetString(reader.GetOrdinal("level")),
+				OrganisorName: reader.GetString(reader.GetOrdinal("organisor_name")),
+				EventLocation: reader.GetString(reader.GetOrdinal("event_location")),
+				SearchQuery: reader.GetString(reader.GetOrdinal("search_query")),
+				MainType: reader.GetString(reader.GetOrdinal("main_type")),
+				TargetGroups: reader.GetString(reader.GetOrdinal("target_groups")),
+				Duration: reader.GetString(reader.GetOrdinal("duration")),
+				Start: reader.GetString(reader.GetOrdinal("start")),
+				End: reader.GetString(reader.GetOrdinal("end")),
+				StartReadable: reader.GetString(reader.GetOrdinal("start_readable")),
+				EndReadable: reader.GetString(reader.GetOrdinal("end_readable")),
+				RegistrationStart: reader.GetString(reader.GetOrdinal("registration_start"))
+			);
+
+			hikes.Add(hike);
+		}
+
+		return hikes;
+	}
 }
