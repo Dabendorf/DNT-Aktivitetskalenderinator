@@ -98,6 +98,9 @@ There is an optional all-kvantor which is applied to all strings, being denoted 
 ### Run project
 `dotnet run` (after having run `dotnet build`)
 
+#### Summary email
+Since the programme sends an email every week and you may want to keep them for the summer, you get a lot of emails. If you pass the argument `--summary` to it, you get a new email with all previously sent hikes which are still happening: `dotnet run -- --summary`
+
 ### Docker
 Docker is a piece of shit and doesn't work. There is a pipeline for building docker inside this project, you are welcome to fix it.
 

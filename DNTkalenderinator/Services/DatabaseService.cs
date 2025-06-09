@@ -40,6 +40,8 @@ public class DatabaseService() {
 				title TEXT,
 				url TEXT,
 				published_date TEXT,
+				level TEXT,
+				organisor_name TEXT,
 				event_location TEXT,
 				search_query TEXT,
 				main_type TEXT,
@@ -70,10 +72,10 @@ public class DatabaseService() {
 				var insertCmd = connection.CreateCommand();
 				insertCmd.CommandText = @"
 					INSERT INTO Hikes (
-						id, title, url, published_date, event_location, search_query, main_type, target_groups, 
+						id, title, url, published_date, level, organisor_name, event_location, search_query, main_type, target_groups, 
 						duration, start, end, start_readable, end_readable, registration_start
 					) VALUES (
-						$id, $title, $url, $publishedDate, $eventLocation, $searchQuery, $mainType, $targetGroups, 
+						$id, $title, $url, $publishedDate, $level, $organisorName, $eventLocation, $searchQuery, $mainType, $targetGroups, 
 						$duration, $start, $end, $startReadable, $endReadable, $registrationStart
 					)";
 
@@ -82,6 +84,8 @@ public class DatabaseService() {
 				insertCmd.Parameters.AddWithValue("$url", hike.Url);
 				//insertCmd.Parameters.AddWithValue("$url", $"https://www.dnt.no/api/search/activitydetails?id={hike.Id}");
 				insertCmd.Parameters.AddWithValue("$publishedDate", hike.PublishDate);
+				insertCmd.Parameters.AddWithValue("$level", hike.Level);
+				insertCmd.Parameters.AddWithValue("$organisorName", hike.OrganisorName);
 				insertCmd.Parameters.AddWithValue("$eventLocation", hike.EventLocation);
 				insertCmd.Parameters.AddWithValue("$searchQuery", hike.SearchQuery);
 				insertCmd.Parameters.AddWithValue("$mainType", hike.MainType);
