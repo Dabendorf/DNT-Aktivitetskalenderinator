@@ -44,8 +44,11 @@ class Program {
 			} else {
 				// Loop through all search queries, running API calls
 				foreach (var (description, searchQuery) in searchQueries) {
-					var apiUrl = $"{GlobalConstants.urlBase}?pageSize=1000{superFilter}{searchQuery}";
-					var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, description);
+					// If description contains IGNOREALL (case insensitive), do not apply superFilter
+					var filter = description.Contains("IGNOREALL", StringComparison.OrdinalIgnoreCase)? "": superFilter;
+
+					var apiUrl = $"{GlobalConstants.urlBase}?pageSize=1000{filter}{searchQuery}";
+					var hikesInApi = await dntApiService.GetHikesFromApi(apiUrl, description.Replace("IGNOREALL","(kein All)"));
 
 					// Compare with database, only returns things not being in the database yet
 					var filteredHikes = hikesInApi
