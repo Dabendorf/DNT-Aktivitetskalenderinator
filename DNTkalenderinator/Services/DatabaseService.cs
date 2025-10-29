@@ -114,6 +114,28 @@ public class DatabaseService() {
 		using var connection = new SqliteConnection($"Data Source={dbPath}");
 		await connection.OpenAsync();
 
+		var createCmd = connection.CreateCommand();
+		createCmd.CommandText = @"
+			CREATE TABLE IF NOT EXISTS Hikes (
+				id INTEGER PRIMARY KEY,
+				title TEXT,
+				url TEXT,
+				published_date TEXT,
+				level TEXT,
+				organisor_name TEXT,
+				event_location TEXT,
+				search_query TEXT,
+				main_type TEXT,
+				target_groups TEXT,
+				duration TEXT,
+				start TEXT,
+				end TEXT,
+				start_readable TEXT,
+				end_readable TEXT,
+				registration_start TEXT
+			)";
+		createCmd.ExecuteNonQuery();
+
 		var hikes = new List<Hike>();
 
 		var selectCmd = connection.CreateCommand();
